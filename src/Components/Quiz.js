@@ -1,13 +1,17 @@
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, Dimensions, StatusBar, ScrollView, Text, View, Button } from 'react-native';
+import { StyleSheet, Dimensions, StatusBar, ScrollView, View, Button } from 'react-native';
 import Question from './Question/Question';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 
 const Quiz = ({ navigation }) => {
     const allQuestions = useSelector(state => state.questionReducer.questions);
     const [questions, setQuestions] = useState(allQuestions);
     const [selectedQuestion, setSelectedQuestion] = useState(questions[0]);
 
+    /**
+     * Set Selected Answer by the User
+     * @param {string} userAns
+     */
     const setAnswer = (userAns) => {
         const ansComplete = questions.filter(question => {
             if (question.id == selectedQuestion.id) {
@@ -18,6 +22,10 @@ const Quiz = ({ navigation }) => {
         setQuestions(ansComplete);
     }
 
+    /**
+     * Switch to the Next Question
+     * @param {number} nextQuestionId - Id of the Next Question
+     */
     const changeQuestion = (nextQuestionId) => {
         questions.filter(question => {
             if (question.id == nextQuestionId) {
@@ -26,6 +34,9 @@ const Quiz = ({ navigation }) => {
         });
     }
 
+    /**
+     * Check the Correct & Wrong Answers, then go to Result Page
+     */
     const submitAns = () => {
         let correctAns = 0;
         let wrongAns = 0;
