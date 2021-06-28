@@ -37,7 +37,6 @@ const Question = ({ selectedQuestion, setAnswer }) => {
 
 export default Question;
 
-
 const styles = StyleSheet.create({
     question: {
         fontSize: 22,
@@ -45,7 +44,6 @@ const styles = StyleSheet.create({
     },
     answer: {
         fontSize: 18,
-        // margin: 5,
         padding: 5,
     },
     selectedAnswer: {
