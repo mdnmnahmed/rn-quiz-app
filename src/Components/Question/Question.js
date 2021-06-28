@@ -49,5 +49,6 @@ const styles = StyleSheet.create({
     selectedAnswer: {
         fontSize: 18,
         backgroundColor: 'skyblue',
+        borderRadius: 10
     },
 });
