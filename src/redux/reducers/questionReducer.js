@@ -1,20 +1,12 @@
-import { GET_JOURNALS, ADD_JOURNAL } from '../actions/actionTypes';
+import { quiz_questions } from '../../utils/quiz-questions';
 
 const initialState = {
-    allJournals: []
+    questions: quiz_questions,
+    selectedQuestion: {}
 }
 
 const questionReducer = (state = initialState, { type, payload }) => {
-    switch (type) {
-        case GET_JOURNALS:
-            return { ...state, allJournals: payload };
-
-        case ADD_JOURNAL:
-            return { ...state, allJournals: [payload, ...state] };
-
-        default:
-            return state;
-    }
+    return state;
 }
 
 export default questionReducer;

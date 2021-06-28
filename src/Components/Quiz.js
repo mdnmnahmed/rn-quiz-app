@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { StyleSheet, Dimensions, StatusBar, ScrollView, Text, View, Button } from 'react-native';
 import Question from './Question/Question';
-import { quiz_questions } from '../utils/quiz-questions';
+import { useSelector, useDispatch } from 'react-redux';
 
 const Quiz = ({ navigation }) => {
-
-    const [questions, setQuestions] = useState(quiz_questions);
+    const allQuestions = useSelector(state => state.questionReducer.questions);
+    const [questions, setQuestions] = useState(allQuestions);
     const [selectedQuestion, setSelectedQuestion] = useState(questions[0]);
 
     const setAnswer = (userAns) => {
@@ -15,7 +15,7 @@ const Quiz = ({ navigation }) => {
             }
             return question;
         });
-        setQuestions(ansComplete)
+        setQuestions(ansComplete);
     }
 
     const changeQuestion = (nextQuestionId) => {
@@ -43,19 +43,26 @@ const Quiz = ({ navigation }) => {
     return (
         <>
             <ScrollView>
-                <View style={styles.container}>
-                    <StatusBar style="auto" />
-                    <Question selectedQuestion={selectedQuestion} setAnswer={setAnswer} />
-                    <View style={styles.questionBtn}>
-                        <Button title="Previous" disabled={selectedQuestion.id <= 1 ? true : false} onPress={() => changeQuestion(selectedQuestion.id - 1)} />
-                        <Button title="Next" disabled={Object.keys(questions).length > selectedQuestion.id ? false : true} onPress={() => changeQuestion(selectedQuestion.id + 1)} style={{ marginLeft: 5 }} />
-                    </View>
-                    {
-                        Object.keys(questions).length == selectedQuestion.id && <View style={{ flex: 1, flexDirection: 'row' }}>
-                            <Button title="Submit" onPress={submitAns} />
+                {
+                    questions.length >= 1 && (
+                        <View style={styles.container}>
+                            <StatusBar style="auto" />
+                            <Question
+                                selectedQuestion={selectedQuestion}
+                                setAnswer={setAnswer}
+                            />
+                            <View style={styles.questionBtn}>
+                                <Button title="Previous" disabled={selectedQuestion.id <= 1 ? true : false} onPress={() => changeQuestion(selectedQuestion.id - 1)} />
+                                <Button title="Next" disabled={Object.keys(questions).length > selectedQuestion.id ? false : true} onPress={() => changeQuestion(selectedQuestion.id + 1)} style={{ marginLeft: 5 }} />
+                            </View>
+                            {
+                                Object.keys(questions).length == selectedQuestion.id && <View style={{ flex: 1, flexDirection: 'row' }}>
+                                    <Button title="Submit" onPress={submitAns} />
+                                </View>
+                            }
                         </View>
-                    }
-                </View>
+                    )
+                }
             </ScrollView>
         </>
     );

@@ -28,6 +28,7 @@
     "web": {
       "favicon": "./assets/favicon.png"
     },
-    "description": ""
+    "description": "React Native Quiz-App",
+    "githubUrl": "https://github.com/mdnmnahmed/rn-quiz-app"
   }
 }
