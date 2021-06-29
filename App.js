@@ -14,10 +14,35 @@ const App = () => {
     return (
         <Provider store={store}>
             <NavigationContainer>
-                <Stack.Navigator>
-                    <Stack.Screen name="Home" component={Home} />
+                <Stack.Navigator
+                    screenOptions={{
+                        headerStyle: {
+                            backgroundColor: 'tomato',
+                        },
+                        headerTitleStyle: {
+                            color: 'white',
+                        }
+                    }}
+                >
+                    <Stack.Screen name="Home" component={Home}
+                        options={{
+                            headerStyle: {
+                                backgroundColor: 'tomato',
+                            },
+                            headerTitleStyle: {
+                                color: 'white',
+                                alignSelf: 'center'
+                            }
+                        }}
+                    />
                     <Stack.Screen name="Quiz" component={Quiz} />
-                    <Stack.Screen name="Result" component={Result} />
+                    <Stack.Screen name="Result" component={Result}
+                        options={{
+                            headerStyle: {
+                                backgroundColor: 'green',
+                            }
+                        }}
+                    />
                 </Stack.Navigator>
             </NavigationContainer>
         </Provider>
