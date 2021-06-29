@@ -8,7 +8,7 @@
     "splash": {
       "image": "./assets/character_lappy_support.png",
       "resizeMode": "contain",
-      "backgroundColor": "white"
+      "backgroundColor": "#FFFAFA"
     },
     "updates": {
       "fallbackToCacheTimeout": 0
@@ -22,7 +22,7 @@
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "white"
+        "backgroundColor": "#FFFAFA"
       }
     },
     "web": {
