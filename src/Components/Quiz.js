@@ -3,7 +3,8 @@ import { StyleSheet, Dimensions, StatusBar, ScrollView, View, Button } from 'rea
 import Question from './Question/Question';
 import { useSelector } from 'react-redux';
 
-const Quiz = ({ navigation }) => {
+const Quiz = ({ route, navigation }) => {
+    const { name } = route.params;
     const allQuestions = useSelector(state => state.questionReducer.questions);
     const [questions, setQuestions] = useState(allQuestions);
     const [selectedQuestion, setSelectedQuestion] = useState(questions[0]);
@@ -47,7 +48,7 @@ const Quiz = ({ navigation }) => {
         });
         setQuestions(resetQuestions);
         changeQuestion(1);
-        const resultData = { correctAns, wrongAns }
+        const resultData = { correctAns, wrongAns, name }
         navigation.navigate('Result', resultData);
     }
 
@@ -68,7 +69,7 @@ const Quiz = ({ navigation }) => {
                             </View>
                             {
                                 Object.keys(questions).length == selectedQuestion.id && <View style={{ flex: 1, flexDirection: 'row' }}>
-                                    <Button title="Submit" onPress={submitAns} />
+                                    <Button color="tomato" title="Submit" onPress={submitAns} />
                                 </View>
                             }
                         </View>

@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, Dimensions, StatusBar, SafeAreaView, ScrollView, Image, View, Button, Text } from 'react-native';
+import { StyleSheet, Dimensions, StatusBar, ScrollView, Image, View, Button, Text } from 'react-native';
+import { TextInput } from 'react-native-paper';
 
 const Home = ({ navigation }) => {
+    const [name, setName] = useState("");
 
     return (
         <>
-            {/* <SafeAreaView> */}
             <StatusBar
                 animated={true}
                 backgroundColor="#42474e"
@@ -15,13 +16,20 @@ const Home = ({ navigation }) => {
                     style={{ width: 300, height: 300, }}
                     source={require('../../assets/character_lappy.png')}
                 />
-                <View style={{paddingTop: 30, paddingBottom: 30}}>
-                    <Text>Test your programming Skills</Text>
+                <View style={{ paddingTop: 30, paddingBottom: 30 }}>
+                    <Text style={{ fontSize: 20 }}>Test your programming Skills</Text>
                 </View>
             </View>
             <View style={{ flex: 1, flexDirection: 'column', margin: 40 }}>
+                <View style={{ paddingTop: 30, paddingBottom: 20 }}>
+                    <TextInput
+                        placeholder="Enter your Name"
+                        onChangeText={setName}
+                        require={true}
+                    />
+                </View>
                 <Button title="Start Quiz"
-                    onPress={() => navigation.navigate('Quiz')}
+                    onPress={() => navigation.navigate('Quiz', { name })}
                 />
             </View>
         </>
@@ -38,6 +46,4 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         margin: 10,
     },
-
-
 });
