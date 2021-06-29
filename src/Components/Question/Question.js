@@ -48,7 +48,9 @@ const styles = StyleSheet.create({
     },
     selectedAnswer: {
         fontSize: 18,
-        backgroundColor: 'skyblue',
+        backgroundColor: 'tomato',
+        color: 'white',
+        fontFamily: "Cochin",
         borderRadius: 10
     },
 });
